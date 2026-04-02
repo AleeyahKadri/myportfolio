@@ -16,10 +16,13 @@ if (localPropertiesFile.exists()) {
 
 val flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
 val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
+val compileSdkVersion = requireNotNull(flutter.compileSdkVersion) { "Flutter compileSdkVersion is not set" }
+val minSdkVersion = requireNotNull(flutter.minSdkVersion) { "Flutter minSdkVersion is not set" }
+val targetSdkVersion = requireNotNull(flutter.targetSdkVersion) { "Flutter targetSdkVersion is not set" }
 
 android {
     namespace = "com.example.lvlmind"
-    compileSdk = flutter.compileSdkVersion ?: 33
+    compileSdk = compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -37,8 +40,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.lvlmind"
-        minSdk = flutter.minSdkVersion ?: 21
-        targetSdk = flutter.targetSdkVersion ?: 33
+        minSdk = minSdkVersion
+        targetSdk = targetSdkVersion
         versionCode = flutterVersionCode.toInt()
         versionName = flutterVersionName
     }

@@ -18,10 +18,12 @@ allprojects {
     }
 }
 
+val appProjectName = "app"
+
 rootProject.layout.buildDirectory.set(file("../build"))
 subprojects {
     layout.buildDirectory.set(rootProject.layout.buildDirectory.dir(name))
-    if (name != "app") {
+    if (name != appProjectName) {
         evaluationDependsOn(":app")
     }
 }
